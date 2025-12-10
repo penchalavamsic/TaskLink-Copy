@@ -1,0 +1,6 @@
+:root {
+    --primary-color: #96f97b;
+    --bs-primary: #96f97b;
+    /* Override Bootstrap primary color */
+    --sidebar-width: 250px;
+}
