@@ -52,7 +52,7 @@ const Dashboard = () => {
                                         {recentUsers.map(user => (
                                             <tr key={user.id}>
                                                 <td className="fw-semibold">{user.name}</td>
-                                                <td><span className={`badge bg-${user.role === 'User' ? 'info' : 'secondary'} bg-opacity-10 text-${user.role === 'User' ? 'info' : 'secondary'} border border-${user.role === 'User' ? 'info' : 'secondary'}`}>{user.role}</span></td>
+                                                <td>{user.role}</td>
                                                 <td>{user.date}</td>
                                                 <td>
                                                     <span className={`badge ${user.status === 'Active' ? 'bg-success' : 'bg-warning text-dark'}`}>
