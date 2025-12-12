@@ -14,7 +14,7 @@ const Sidebar = ({ links }) => {
     const navLinks = links || defaultLinks;
 
     return (
-        <div className="bg-dark text-white p-3 vh-100" style={{ width: '250px', position: 'fixed', left: 0, top: 0, overflowY: 'auto' }}>
+        <div className="bg-white text-dark p-3 vh-100 border-end" style={{ width: '250px', position: 'fixed', left: 0, top: 0, overflowY: 'auto' }}>
             <div className="d-flex align-items-center mb-4 px-2">
                 <div className="bg-primary rounded me-2" style={{ width: '32px', height: '32px' }}></div>
                 <h4 className="m-0 fw-bold">TaskLink</h4>
@@ -25,7 +25,7 @@ const Sidebar = ({ links }) => {
                     <li className="nav-item" key={index}>
                         <NavLink
                             to={link.to}
-                            className={({ isActive }) => `nav-link d-flex align-items-center text-white ${isActive ? 'bg-primary' : ''}`}
+                            className={({ isActive }) => `nav-link d-flex align-items-center text-dark ${isActive ? 'bg-primary' : ''}`}
                         >
                             <i className={`bi ${link.icon} me-3`}></i>
                             {link.label}

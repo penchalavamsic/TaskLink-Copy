@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../assets/avatar_placeholder.png';
 
-const Header = () => {
+const Header = ({ role = 'user' }) => {
+    const isUser = role === 'user';
+    const profileLink = isUser ? '/user/profile' : `/${role}/profile`;
+    const notificationLink = isUser ? '/user/notifications' : `/${role}/notifications`;
+    const DisplayName = role === 'admin' ? 'Admin' : 'User Name';
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom px-4">
             <div className="container-fluid">
@@ -12,17 +17,17 @@ const Header = () => {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul className="navbar-nav mb-2 mb-lg-0 align-items-center">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/user/notifications">
+                            <Link className="nav-link" to={notificationLink}>
                                 <i className="bi bi-bell fs-5"></i>
                             </Link>
                         </li>
                         <li className="nav-item dropdown ms-3">
                             <a className="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src={avatar} alt="Profile" className="rounded-circle me-2" style={{ width: '40px', height: '40px' }} />
-                                <span className="fw-bold">User Name</span>
+                                <span className="fw-bold">{DisplayName}</span>
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><Link className="dropdown-item" to="/user/profile">Profile</Link></li>
+                                <li><Link className="dropdown-item" to={profileLink}>Profile</Link></li>
                                 <li><hr className="dropdown-divider" /></li>
                                 <li><Link className="dropdown-item" to="/login">Logout</Link></li>
                             </ul>
