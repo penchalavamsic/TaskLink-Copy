@@ -61,7 +61,7 @@ const ManageUsers = () => {
                                     <th className="ps-4">User</th>
                                     <th>Role</th>
                                     <th>Status</th>
-                                    <th>Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,21 +77,14 @@ const ManageUsers = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            <span className={`badge bg-${user.role === 'User' ? 'info' : 'secondary'} bg-opacity-10 text-${user.role === 'User' ? 'info' : 'secondary'} border border-${user.role === 'User' ? 'info' : 'secondary'}`}>
-                                                {user.role}
-                                            </span>
+                                            {user.role}
                                         </td>
                                         <td>
                                             <span className={`badge ${user.status === 'Active' ? 'bg-success' : user.status === 'Suspended' ? 'bg-danger' : 'bg-warning text-dark'}`}>
                                                 {user.status}
                                             </span>
                                         </td>
-                                        <td>
-                                            <div className="d-flex gap-2">
-                                                <button className="btn btn-sm btn-outline-primary"><i className="bi bi-pencil"></i></button>
-                                                <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(user.id)}><i className="bi bi-trash"></i></button>
-                                            </div>
-                                        </td>
+
                                     </tr>
                                 ))}
                             </tbody>
