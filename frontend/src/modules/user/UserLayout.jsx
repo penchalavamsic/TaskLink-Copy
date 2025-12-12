@@ -13,7 +13,7 @@ const UserLayout = () => {
 
             {/* Main Content Area */}
             <div className="flex-grow-1 bg-light min-vh-100 d-flex flex-column">
-                <Header />
+                <Header role="user" />
                 <div className="p-4 flex-grow-1">
                     <Outlet />
                 </div>
