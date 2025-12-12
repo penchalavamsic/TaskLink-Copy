@@ -32,7 +32,7 @@ const Dashboard = () => {
 
             <div className="row g-4">
                 {/* Recent Registrations */}
-                <div className="col-lg-8">
+                <div className="col-12">
                     <div className="card border-0 shadow-sm h-100">
                         <div className="card-header bg-white border-bottom-0 pt-4 pb-2">
                             <h5 className="fw-bold mb-0">Recent Registrations</h5>
@@ -63,27 +63,6 @@ const Dashboard = () => {
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* System Status / Quick Actions */}
-                <div className="col-lg-4">
-                    <div className="card border-0 shadow-sm mb-4">
-                        <div className="card-body">
-                            <h5 className="fw-bold mb-3">System Health</h5>
-                            <div className="d-flex justify-content-between align-items-center mb-2">
-                                <span>Server Status</span>
-                                <span className="badge bg-success">Online</span>
-                            </div>
-                            <div className="d-flex justify-content-between align-items-center mb-2">
-                                <span>Database</span>
-                                <span className="badge bg-success">Connected</span>
-                            </div>
-                            <div className="d-flex justify-content-between align-items-center">
-                                <span>Last Backup</span>
-                                <small className="text-muted">2 hours ago</small>
                             </div>
                         </div>
                     </div>
