@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, detailPath = '/user/task-detail' }) => {
     // Default values if task prop is missing properties
     const {
         id = 1,
@@ -30,7 +30,7 @@ const TaskCard = ({ task }) => {
                 </p>
                 <div className="d-flex justify-content-between align-items-center">
                     <span className="fw-bold text-primary">{budget}</span>
-                    <Link to={`/user/task-detail/${id}`} className="btn btn-sm btn-outline-primary rounded-pill px-4">
+                    <Link to={`${detailPath}/${id}`} className="btn btn-sm btn-outline-primary rounded-pill px-4">
                         View Details
                     </Link>
                 </div>
