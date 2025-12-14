@@ -18,6 +18,14 @@ import ManageTasks from './modules/admin/pages/ManageTasks';
 import WorkerVerification from './modules/admin/pages/WorkerVerification';
 import AdminProfile from './modules/admin/pages/AdminProfile';
 
+// Worker Imports
+import WorkerLayout from './modules/worker/WorkerLayout';
+import WorkerDashboard from './modules/worker/pages/Dashboard';
+import BrowseTasks from './modules/worker/pages/BrowseTasks';
+import MyBids from './modules/worker/pages/MyBids';
+import MyJobs from './modules/worker/pages/MyJobs';
+import WorkerProfile from './modules/worker/pages/Profile';
+
 function App() {
     return (
         <Routes>
@@ -48,8 +56,18 @@ function App() {
                 <Route path="worker-verification" element={<WorkerVerification />} />
                 <Route path="profile" element={<AdminProfile />} />
             </Route>
+
+            {/* Worker Module Routes */}
+            <Route path="/worker" element={<WorkerLayout />}>
+                <Route index element={<Navigate to="/worker/dashboard" replace />} />
+                <Route path="dashboard" element={<WorkerDashboard />} />
+                <Route path="browse-tasks" element={<BrowseTasks />} />
+                <Route path="my-bids" element={<MyBids />} />
+                <Route path="my-jobs" element={<MyJobs />} />
+                <Route path="profile" element={<WorkerProfile />} />
+            </Route>
         </Routes>
     );
-}
+};
 
 export default App;

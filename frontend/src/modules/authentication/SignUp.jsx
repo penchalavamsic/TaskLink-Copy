@@ -12,11 +12,7 @@ const SignUp = () => {
         if (role === 'user') {
             navigate('/user/dashboard');
         } else {
-            // Placeholder for Worker Module redirect
-            // Since we haven't built the Worker module files yet, redirecting to User Dashboard
-            // In a real app, this would go to /worker/dashboard
-            navigate('/user/dashboard');
-            alert("Redirecting to Worker workspace (Placeholder)...");
+            navigate('/worker/dashboard');
         }
     };
 

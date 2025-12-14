@@ -14,9 +14,7 @@ const Login = () => {
             } else if (selectedRole === 'Admin') {
                 navigate('/admin/dashboard');
             } else if (selectedRole === 'Worker') {
-                // Placeholder redirect for worker
-                navigate('/user/dashboard'); // Temporary: redirecting to user dashboard as worker module is dummy
-                alert("Redirecting to Worker Module (Dummy)...");
+                navigate('/worker/dashboard'); // Real redirect to worker module
             }
         } else {
             alert("Please select a role to login.");
