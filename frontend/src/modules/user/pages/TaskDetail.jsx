@@ -11,7 +11,7 @@ const TaskDetail = () => {
         title: "Fix Website CSS",
         description: "We are facing some spacing issues on the homepage when viewing on mobile devices. The header overlaps with the main content, and the footer is not sticking to the bottom. We need a CSS expert to fix these responsiveness issues. Please make sure to test on iPhone and Android screen sizes.",
         status: "In Progress",
-        budget: "$50",
+        budget: "₹50",
         deadline: "Oct 30, 2023",
         postedBy: "TechCorp Inc.",
         postedDate: "Oct 24, 2023",
@@ -60,19 +60,7 @@ const TaskDetail = () => {
                         </div>
                     </div>
 
-                    <div className="card border-0 shadow-sm">
-                        <div className="card-header bg-white pt-4 pb-0 border-bottom-0">
-                            <h5 className="fw-bold">Activity</h5>
-                        </div>
-                        <div className="card-body">
-                            <div className="alert alert-info d-flex align-items-center" role="alert">
-                                <i className="bi bi-info-circle-fill me-2"></i>
-                                <div>
-                                    This task is currently <strong>In Progress</strong>. Please update the status once completed.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <div className="col-lg-4">
@@ -88,9 +76,7 @@ const TaskDetail = () => {
                                     <small className="text-muted">Verified Client</small>
                                 </div>
                             </div>
-                            <div className="d-grid gap-2">
-                                <Button variant="outline-primary"><i className="bi bi-chat-dots me-2"></i> Message Client</Button>
-                            </div>
+
                         </div>
                     </div>
 
