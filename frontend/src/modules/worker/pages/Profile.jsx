@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../../components/Button';
 import avatar from '../../../assets/avatar_placeholder.png';
 
 const WorkerProfile = () => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [profileData, setProfileData] = useState({
+        name: 'Alex Worker',
+        title: 'Frontend Developer',
+        bio: 'Experienced Frontend Developer with a passion for creating responsive and intuitive user interfaces. Proficient in React, JavaScript, and modern CSS frameworks. I deliver high-quality code and pay attention to detail.',
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setProfileData({ ...profileData, [name]: value });
+    };
+
+    const handleSave = () => {
+        setIsEditing(false);
+        // Save logic to backend would go here
+    };
     return (
         <div className="container-fluid p-0">
             <h2 className="mb-4 fw-bold">My Profile</h2>
@@ -14,16 +30,19 @@ const WorkerProfile = () => {
                         <div className="mb-4">
                             <img src={avatar} className="rounded-circle img-thumbnail" alt="Profile" style={{ width: '150px', height: '150px' }} />
                         </div>
-                        <h4 className="fw-bold mb-1">Alex Worker</h4>
-                        <p className="text-muted mb-2">Frontend Developer</p>
+                        <h4 className="fw-bold mb-1">{profileData.name}</h4>
+                        <p className="text-muted mb-2">{profileData.title}</p>
                         <div className="d-flex justify-content-center gap-2 mb-4">
                             <span className="badge bg-light text-dark border">React</span>
                             <span className="badge bg-light text-dark border">Node.js</span>
                             <span className="badge bg-light text-dark border">UI/UX</span>
                         </div>
                         <div className="d-grid gap-2">
-                            <Button variant="outline-primary">Edit Profile</Button>
-                            <Button variant="outline-secondary">Upload Resume</Button>
+                            {isEditing ? (
+                                <Button variant="success" onClick={handleSave}>Save Profile</Button>
+                            ) : (
+                                <Button variant="outline-primary" onClick={() => setIsEditing(true)}>Edit Profile</Button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -35,11 +54,22 @@ const WorkerProfile = () => {
                             <h5 className="fw-bold mb-0">About Me</h5>
                         </div>
                         <div className="card-body">
-                            <p className="text-muted">
-                                Experienced Frontend Developer with a passion for creating responsive and intuitive user interfaces.
-                                Proficient in React, JavaScript, and modern CSS frameworks. I deliver high-quality code and
-                                pay attention to detail.
-                            </p>
+                            {isEditing ? (
+                                <div className="mb-3">
+                                    <label className="form-label">Name</label>
+                                    <input type="text" className="form-control mb-2" name="name" value={profileData.name} onChange={handleInputChange} />
+
+                                    <label className="form-label">Title</label>
+                                    <input type="text" className="form-control mb-2" name="title" value={profileData.title} onChange={handleInputChange} />
+
+                                    <label className="form-label">Bio</label>
+                                    <textarea className="form-control" rows="4" name="bio" value={profileData.bio} onChange={handleInputChange}></textarea>
+                                </div>
+                            ) : (
+                                <p className="text-muted">
+                                    {profileData.bio}
+                                </p>
+                            )}
 
                             <h5 className="fw-bold mt-4 mb-3">Stats</h5>
                             <div className="row g-3">

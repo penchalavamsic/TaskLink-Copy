@@ -3,8 +3,9 @@ import Button from '../../../components/Button';
 
 const MyJobs = () => {
     const jobs = [
-        { id: 1, title: 'Mobile App Icon', client: 'AppStudio', amount: '$50', deadline: 'Oct 30, 2023', status: 'In Progress', progress: 60 },
-        { id: 2, title: 'Blog Content Writing', client: 'MediaHouse', amount: '$30', deadline: 'Oct 22, 2023', status: 'Completed', progress: 100 },
+
+        { id: 1, title: 'Mobile App Icon', client: 'AppStudio', amount: '₹50', deadline: 'Oct 30, 2023', status: 'In Progress', description: 'Design a set of icons for a new mobile application following Material Design guidelines.' },
+        { id: 2, title: 'Blog Content Writing', client: 'MediaHouse', amount: '₹30', deadline: 'Oct 22, 2023', status: 'Completed', description: 'Write a 1000-word blog post about the latest trends in AI technology.' },
     ];
 
     return (
@@ -26,20 +27,9 @@ const MyJobs = () => {
                                     </span>
                                 </div>
                                 <div className="mb-3">
-                                    <div className="d-flex justify-content-between text-muted small mb-1">
-                                        <span>Progress</span>
-                                        <span>{job.progress}%</span>
-                                    </div>
-                                    <div className="progress" style={{ height: '8px' }}>
-                                        <div
-                                            className={`progress-bar ${job.status === 'Completed' ? 'bg-success' : 'bg-primary'}`}
-                                            role="progressbar"
-                                            style={{ width: `${job.progress}%` }}
-                                            aria-valuenow={job.progress}
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                        ></div>
-                                    </div>
+                                    <p className="text-muted small">
+                                        {job.description}
+                                    </p>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center mt-4">
                                     <div>
@@ -51,9 +41,7 @@ const MyJobs = () => {
                                         <span className="fw-bold text-success fs-5">{job.amount}</span>
                                     </div>
                                 </div>
-                                <div className="mt-4 pt-3 border-top text-end">
-                                    <Button variant="primary" size="sm">Open Workroom</Button>
-                                </div>
+
                             </div>
                         </div>
                     </div>

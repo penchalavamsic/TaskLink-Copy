@@ -4,15 +4,15 @@ import Button from '../../../components/Button';
 
 const Dashboard = () => {
     const stats = [
-        { title: 'Total Earnings', value: '$1,250', icon: 'bi bi-cash-stack', color: 'success' },
+        { title: 'Total Earnings', value: '₹1,250', icon: 'bi bi-cash-stack', color: 'success' },
         { title: 'Jobs Completed', value: '18', icon: 'bi bi-check-circle-fill', color: 'primary' },
         { title: 'Active Bids', value: '5', icon: 'bi bi-hourglass-split', color: 'warning' },
         { title: 'Rating', value: '4.8', icon: 'bi bi-star-fill', color: 'info' },
     ];
 
     const recentJobs = [
-        { id: 1, title: 'Logo Design', client: 'TechCorp Inc.', date: 'Oct 25, 2023', amount: '$200', status: 'Completed' },
-        { id: 2, title: 'React Frontend Fix', client: 'StartUp Hub', date: 'Oct 28, 2023', amount: '$150', status: 'In Progress' },
+        { id: 1, title: 'Logo Design', client: 'TechCorp Inc.', date: 'Oct 25, 2023', amount: '₹200', status: 'Completed' },
+        { id: 2, title: 'React Frontend Fix', client: 'StartUp Hub', date: 'Oct 28, 2023', amount: '₹150', status: 'In Progress' },
     ];
 
     return (
@@ -34,7 +34,6 @@ const Dashboard = () => {
                     <div className="card border-0 shadow-sm h-100">
                         <div className="card-header bg-white border-bottom-0 pt-4 pb-2 d-flex justify-content-between align-items-center">
                             <h5 className="fw-bold mb-0">Recent Jobs</h5>
-                            <Button variant="link" className="text-decoration-none">View All</Button>
                         </div>
                         <div className="card-body">
                             <div className="table-responsive">
@@ -70,35 +69,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Suggested Tasks / Quick Actions */}
-                <div className="col-lg-4">
-                    <div className="card border-0 shadow-sm mb-4">
-                        <div className="card-header bg-white border-bottom-0 pt-3 pb-2">
-                            <h5 className="fw-bold mb-0">Recommended for You</h5>
-                        </div>
-                        <div className="card-body">
-                            <div className="d-flex align-items-start mb-3 pb-3 border-bottom">
-                                <div className="bg-light p-2 rounded me-3">
-                                    <i className="bi bi-palette fs-4 text-primary"></i>
-                                </div>
-                                <div>
-                                    <h6 className="fw-bold mb-1">UI/UX Design for App</h6>
-                                    <small className="text-muted d-block mb-2">Budget: $500 - $800</small>
-                                    <Button variant="outline-primary" size="sm">View Details</Button>
-                                </div>
-                            </div>
-                            <div className="d-flex align-items-start">
-                                <div className="bg-light p-2 rounded me-3">
-                                    <i className="bi bi-code-slash fs-4 text-success"></i>
-                                </div>
-                                <div>
-                                    <h6 className="fw-bold mb-1">Fix API Integration</h6>
-                                    <small className="text-muted d-block mb-2">Budget: $100</small>
-                                    <Button variant="outline-primary" size="sm">View Details</Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     );
