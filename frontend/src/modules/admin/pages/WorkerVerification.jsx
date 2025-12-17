@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../../components/Button';
 import avatar from '../../../assets/avatar_placeholder.png';
 
 const WorkerVerification = () => {
-    const pendingWorkers = [
+    const [pendingWorkers, setPendingWorkers] = useState([
         { id: 1, name: 'Diana Prince', email: 'diana@worker.com', profession: 'Graphic Designer', submittedDate: 'Oct 26, 2023', documents: ['ID Proof.pdf', 'Certificate.jpg'] },
         { id: 2, name: 'Bruce Wayne', email: 'bruce@worker.com', profession: 'Security Consultant', submittedDate: 'Oct 25, 2023', documents: ['Passport.pdf'] },
-    ];
+    ]);
+
+    const handleApprove = (id) => {
+        setPendingWorkers(pendingWorkers.filter(w => w.id !== id));
+        // api call logic would go here
+    };
+
+    const handleReject = (id) => {
+        setPendingWorkers(pendingWorkers.filter(w => w.id !== id));
+        // api call logic would go here
+    };
 
     return (
         <div className="container-fluid p-0">
@@ -24,25 +34,11 @@ const WorkerVerification = () => {
                                         <p className="text-muted mb-1">{worker.profession}</p>
                                         <small className="text-muted"><i className="bi bi-envelope me-1"></i> {worker.email}</small>
                                     </div>
-                                    <span className="badge bg-warning text-dark ms-auto">Pending</span>
-                                </div>
-
-                                <hr />
-
-                                <h6 className="fw-bold mb-3">Submitted Documents</h6>
-                                <div className="mb-4">
-                                    {worker.documents.map((doc, index) => (
-                                        <div key={index} className="d-flex align-items-center mb-2 p-2 border rounded bg-light">
-                                            <i className="bi bi-file-earmark-text me-3 fs-5 text-primary"></i>
-                                            <span className="flex-grow-1">{doc}</span>
-                                            <button className="btn btn-sm btn-link">View</button>
-                                        </div>
-                                    ))}
                                 </div>
 
                                 <div className="d-flex gap-2">
-                                    <Button variant="success" className="flex-grow-1"><i className="bi bi-check-lg me-2"></i>Approve</Button>
-                                    <Button variant="outline-danger" className="flex-grow-1"><i className="bi bi-x-lg me-2"></i>Reject</Button>
+                                    <Button variant="success" className="flex-grow-1" onClick={() => handleApprove(worker.id)}><i className="bi bi-check-lg me-2"></i>Approve</Button>
+                                    <Button variant="outline-danger" className="flex-grow-1" onClick={() => handleReject(worker.id)}><i className="bi bi-x-lg me-2"></i>Reject</Button>
                                 </div>
                             </div>
                             <div className="card-footer bg-white text-muted small py-2">

@@ -7,7 +7,6 @@ const Dashboard = () => {
         { title: 'Total Users', value: '1,250', icon: 'bi bi-people', color: 'primary' },
         { title: 'Total Workers', value: '850', icon: 'bi bi-person-badge', color: 'success' },
         { title: 'Active Tasks', value: '320', icon: 'bi bi-list-task', color: 'info' },
-        { title: 'Pending Verifications', value: '15', icon: 'bi bi-shield-exclamation', color: 'warning' },
     ];
 
     const recentUsers = [
