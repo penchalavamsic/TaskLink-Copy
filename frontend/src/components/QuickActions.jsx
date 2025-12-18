@@ -8,15 +8,19 @@ const QuickActions = () => {
                 <h5 className="fw-bold mb-0">Quick Actions</h5>
             </div>
             <div className="card-body">
-                <div className="d-grid gap-2">
-                    <Link to="/user/post-task" className="btn btn-primary btn-lg d-flex align-items-center justify-content-center">
-                        <i className="bi bi-plus-circle-fill me-2"></i>
-                        Post New Task
-                    </Link>
-                    <Link to="/user/my-tasks" className="btn btn-outline-secondary d-flex align-items-center justify-content-center">
-                        <i className="bi bi-list-check me-2"></i>
-                        Manage My Tasks
-                    </Link>
+                <div className="row g-3">
+                    <div className="col-md-6">
+                        <Link to="/user/post-task" className="btn btn-primary btn-lg w-100 h-100 d-flex align-items-center justify-content-center">
+                            <i className="bi bi-plus-circle-fill me-2"></i>
+                            Post New Task
+                        </Link>
+                    </div>
+                    <div className="col-md-6">
+                        <Link to="/user/my-tasks" className="btn btn-outline-secondary btn-lg w-100 h-100 d-flex align-items-center justify-content-center">
+                            <i className="bi bi-list-check me-2"></i>
+                            Manage My Tasks
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

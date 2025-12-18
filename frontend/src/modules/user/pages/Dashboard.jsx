@@ -31,7 +31,7 @@ const Dashboard = () => {
 
 
                 {/* Quick Actions */}
-                <div className="col-lg-4">
+                <div className="col-12">
                     <QuickActions />
                 </div>
             </div>
