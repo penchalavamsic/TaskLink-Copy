@@ -30,7 +30,7 @@ function App() {
     return (
         <Routes>
             {/* Redirect root to User Dashboard for now, or Login */}
-            <Route path="/" element={<Navigate to="/user/dashboard" replace />} />
+            <Route path="/" element={<Navigate to="/login" replace />} />
 
             {/* Auth Routes */}
             <Route path="/login" element={<Login />} />
