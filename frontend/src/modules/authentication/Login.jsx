@@ -35,7 +35,7 @@ const Login = () => {
                                 <form onSubmit={handleLogin}>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label fw-semibold">Email Address</label>
-                                        <input type="email" className="form-control bg-light" id="email" placeholder="name@example.com" />
+                                        <input type="email" className="form-control bg-light" id="email" placeholder="rajesh@example.com" />
                                     </div>
                                     <div className="mb-4">
                                         <div className="d-flex justify-content-between align-items-center mb-1">

@@ -58,16 +58,20 @@ const SignUp = () => {
                                     <div className="row mb-3">
                                         <div className="col-6">
                                             <label htmlFor="firstName" className="form-label fw-semibold">First Name</label>
-                                            <input type="text" className="form-control bg-light" id="firstName" placeholder="John" required />
+                                            <input type="text" className="form-control bg-light" id="firstName" placeholder="Rajesh" required />
                                         </div>
                                         <div className="col-6">
                                             <label htmlFor="lastName" className="form-label fw-semibold">Last Name</label>
-                                            <input type="text" className="form-control bg-light" id="lastName" placeholder="Doe" required />
+                                            <input type="text" className="form-control bg-light" id="lastName" placeholder="Kumar" required />
                                         </div>
                                     </div>
                                     <div className="mb-3">
+                                        <label htmlFor="address" className="form-label fw-semibold">Address</label>
+                                        <input type="text" className="form-control bg-light" id="address" placeholder="e.g. Flat 402, Sunshine Apts, Mumbai" required />
+                                    </div>
+                                    <div className="mb-3">
                                         <label htmlFor="email" className="form-label fw-semibold">Email Address</label>
-                                        <input type="email" className="form-control bg-light" id="email" placeholder="name@example.com" required />
+                                        <input type="email" className="form-control bg-light" id="email" placeholder="rajesh@example.com" required />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label fw-semibold">Password</label>
