@@ -35,8 +35,8 @@ const Profile = () => {
                         <div className="mb-3">
                             <img src={profileImage} className="rounded-circle img-thumbnail" alt="Profile" style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
                         </div>
-                        <h4 className="fw-bold mb-1">John Doe</h4>
-                        <p className="text-muted mb-3">Web Developer & Designer</p>
+                        <h4 className="fw-bold mb-1">Rajesh Kumar</h4>
+                        <p className="text-muted mb-3">Home Owner & Client</p>
                         <div className="d-flex justify-content-center gap-2 mb-3">
                             <input
                                 type="file"
@@ -78,30 +78,30 @@ const Profile = () => {
                                 <div className="row mb-3">
                                     <div className="col-md-6">
                                         <label className="form-label fw-semibold">First Name</label>
-                                        <input type="text" className="form-control" defaultValue="John" />
+                                        <input type="text" className="form-control" defaultValue="Rajesh" />
                                     </div>
                                     <div className="col-md-6">
                                         <label className="form-label fw-semibold">Last Name</label>
-                                        <input type="text" className="form-control" defaultValue="Doe" />
+                                        <input type="text" className="form-control" defaultValue="Kumar" />
                                     </div>
                                 </div>
                                 <div className="row mb-3">
                                     <div className="col-md-6">
                                         <label className="form-label fw-semibold">Email</label>
-                                        <input type="email" className="form-control" defaultValue="john.doe@example.com" />
+                                        <input type="email" className="form-control" defaultValue="rajesh.kumar@example.com" />
                                     </div>
                                     <div className="col-md-6">
                                         <label className="form-label fw-semibold">Phone</label>
-                                        <input type="tel" className="form-control" defaultValue="+1 234 567 890" />
+                                        <input type="tel" className="form-control" defaultValue="+91 98765 43210" />
                                     </div>
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label fw-semibold">Bio</label>
-                                    <textarea className="form-control" rows="3" defaultValue="Passionate web developer with 5 years of experience in React and Node.js."></textarea>
+                                    <textarea className="form-control" rows="3" defaultValue="Regularly looking for skilled workers for home maintenance and renovation tasks."></textarea>
                                 </div>
                                 <div className="mb-4">
                                     <label className="form-label fw-semibold">Address</label>
-                                    <input type="text" className="form-control" defaultValue="123 Main St, New York, NY 10001" />
+                                    <input type="text" className="form-control" defaultValue="Flat 402, Sunshine Apartments, Mumbai, Maharashtra 400053" />
                                 </div>
                                 <div className="text-end">
                                     <Button variant="primary" type="submit">Save Changes</Button>

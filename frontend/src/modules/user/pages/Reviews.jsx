@@ -3,9 +3,9 @@ import React from 'react';
 const Reviews = () => {
     // Mock data
     const reviews = [
-        { id: 1, reviewer: 'Alice Smith', role: 'Project Manager', rating: 5, comment: 'John is an excellent developer. Delivered on time and high quality code.', date: '2 days ago' },
-        { id: 2, reviewer: 'Bob Jones', role: 'Designer', rating: 4, comment: 'Great communication, but slight delay in delivery. Overall good experience.', date: '1 week ago' },
-        { id: 3, reviewer: 'Charlie Brown', role: 'Startup Founder', rating: 5, comment: 'Fantastic work! Looking forward to working together again.', date: '2 weeks ago' },
+        { id: 1, workerName: 'Ramesh Gupta', role: 'Plumber', rating: 5, comment: 'Fixed the leak quickly and was very polite. Highly recommended.', date: '2 days ago' },
+        { id: 2, workerName: 'Suresh Reddy', role: 'Electrician', rating: 4, comment: 'Good work on the wiring, but came a bit late. Overall good job.', date: '1 week ago' },
+        { id: 3, workerName: 'Deepak Verma', role: 'Carpenter', rating: 5, comment: 'Excellent furniture assembly. Very professional and clean work.', date: '2 weeks ago' },
     ];
 
     const renderStars = (rating) => {
@@ -33,7 +33,7 @@ const Reviews = () => {
                                     <div key={review.id} className="list-group-item p-4 border-bottom">
                                         <div className="d-flex justify-content-between align-items-start">
                                             <div>
-                                                <h5 className="fw-bold mb-0">{review.reviewer}</h5>
+                                                <h5 className="fw-bold mb-0">{review.workerName}</h5>
                                                 <small className="text-muted">{review.role}</small>
                                             </div>
                                             <small className="text-muted">{review.date}</small>
