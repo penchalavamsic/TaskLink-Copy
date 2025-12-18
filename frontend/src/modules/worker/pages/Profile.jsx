@@ -5,9 +5,9 @@ import avatar from '../../../assets/avatar_placeholder.png';
 const WorkerProfile = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [profileData, setProfileData] = useState({
-        name: 'Alex Worker',
-        title: 'Frontend Developer',
-        bio: 'Experienced Frontend Developer with a passion for creating responsive and intuitive user interfaces. Proficient in React, JavaScript, and modern CSS frameworks. I deliver high-quality code and pay attention to detail.',
+        name: 'Raju Mistri',
+        title: 'Professional Plumber',
+        bio: 'Expert plumber with over 8 years of experience in residential and commercial plumbing. I specialize in leak repairs, pipe fitting, and bathroom installations. Efficient, reliable, and available for emergency calls.',
     });
 
     const handleInputChange = (e) => {
@@ -33,9 +33,9 @@ const WorkerProfile = () => {
                         <h4 className="fw-bold mb-1">{profileData.name}</h4>
                         <p className="text-muted mb-2">{profileData.title}</p>
                         <div className="d-flex justify-content-center gap-2 mb-4">
-                            <span className="badge bg-light text-dark border">React</span>
-                            <span className="badge bg-light text-dark border">Node.js</span>
-                            <span className="badge bg-light text-dark border">UI/UX</span>
+                            <span className="badge bg-light text-dark border">Pipe Fitting</span>
+                            <span className="badge bg-light text-dark border">Leak Repair</span>
+                            <span className="badge bg-light text-dark border">Installation</span>
                         </div>
                         <div className="d-grid gap-2">
                             {isEditing ? (
@@ -75,20 +75,20 @@ const WorkerProfile = () => {
                             <div className="row g-3">
                                 <div className="col-sm-4">
                                     <div className="p-3 bg-light rounded text-center">
-                                        <h3 className="fw-bold mb-0 text-primary">98%</h3>
-                                        <small className="text-muted">JSS</small>
+                                        <h3 className="fw-bold mb-0 text-primary">4.8</h3>
+                                        <small className="text-muted">Rating</small>
                                     </div>
                                 </div>
                                 <div className="col-sm-4">
                                     <div className="p-3 bg-light rounded text-center">
-                                        <h3 className="fw-bold mb-0 text-success">24</h3>
+                                        <h3 className="fw-bold mb-0 text-success">154</h3>
                                         <small className="text-muted">Jobs Done</small>
                                     </div>
                                 </div>
                                 <div className="col-sm-4">
                                     <div className="p-3 bg-light rounded text-center">
-                                        <h3 className="fw-bold mb-0 text-warning">450</h3>
-                                        <small className="text-muted">Hours</small>
+                                        <h3 className="fw-bold mb-0 text-warning">8</h3>
+                                        <small className="text-muted">Years Exp</small>
                                     </div>
                                 </div>
                             </div>
@@ -97,14 +97,14 @@ const WorkerProfile = () => {
                             <div className="row g-3">
                                 <div className="col-md-6">
                                     <div className="border rounded p-3 h-100">
-                                        <h6 className="fw-bold">E-commerce App</h6>
-                                        <small className="text-muted">Built a full-stack e-commerce platform.</small>
+                                        <h6 className="fw-bold">Bathroom Renovation</h6>
+                                        <small className="text-muted">Complete plumbing setup for a 3BHK flat in Mumbai.</small>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="border rounded p-3 h-100">
-                                        <h6 className="fw-bold">Corporate Website</h6>
-                                        <small className="text-muted">Redesigned corporate site for better SEO.</small>
+                                        <h6 className="fw-bold">Water Tank Installation</h6>
+                                        <small className="text-muted">Installed 1000L overhead tanks for a housing society.</small>
                                     </div>
                                 </div>
                             </div>

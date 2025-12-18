@@ -4,9 +4,10 @@ import Button from '../../../components/Button';
 
 const MyBids = () => {
     const [bids, setBids] = useState([
-        { id: 1, taskTitle: 'E-commerce Website', client: 'RetailGiant', amount: '₹1500', date: 'Oct 20, 2023', status: 'Pending', taskId: 101 },
-        { id: 2, taskTitle: 'Mobile App Icon', client: 'AppStudio', amount: '₹50', date: 'Oct 18, 2023', status: 'Accepted', taskId: 102 },
-        { id: 3, taskTitle: 'Python Script', client: 'DataCorp', amount: '₹80', date: 'Oct 15, 2023', status: 'Rejected', taskId: 103 },
+        { id: 1, taskTitle: 'Leaking Pipe Repair', client: 'Amit Sharma', amount: '₹800', date: 'Oct 20, 2023', status: 'Pending', taskId: 101 },
+        { id: 2, taskTitle: 'Full House Wiring', client: 'Priya Patel', amount: '₹15000', date: 'Oct 18, 2023', status: 'Accepted', taskId: 102 },
+        { id: 3, taskTitle: 'Sofa Cleaning', client: 'Vikram Singh', amount: '₹500', date: 'Oct 15, 2023', status: 'Rejected', taskId: 103 },
+        { id: 4, taskTitle: 'Kitchen Cabinet Repair', client: 'Neha Gupta', amount: '₹1200', date: 'Oct 22, 2023', status: 'Pending', taskId: 104 },
     ]);
 
     const handleCancelBid = (id) => {

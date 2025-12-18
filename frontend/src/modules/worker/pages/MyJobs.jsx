@@ -3,9 +3,9 @@ import Button from '../../../components/Button';
 
 const MyJobs = () => {
     const jobs = [
-
-        { id: 1, title: 'Mobile App Icon', client: 'AppStudio', amount: '₹50', deadline: 'Oct 30, 2023', status: 'In Progress', description: 'Design a set of icons for a new mobile application following Material Design guidelines.' },
-        { id: 2, title: 'Blog Content Writing', client: 'MediaHouse', amount: '₹30', deadline: 'Oct 22, 2023', status: 'Completed', description: 'Write a 1000-word blog post about the latest trends in AI technology.' },
+        { id: 1, title: 'Bathroom Tile Installation', client: 'Rohan Das', amount: '₹2500', deadline: 'Oct 30, 2023', status: 'In Progress', description: 'Install anti-skid tiles in two bathrooms. Materials provided.' },
+        { id: 2, title: 'Garden Cleaning', client: 'Meera Iyer', amount: '₹800', deadline: 'Oct 22, 2023', status: 'Completed', description: 'Clear weeds and trim hedges for the front and backyard garden.' },
+        { id: 3, title: 'Switchboard Replacement', client: 'Arjun Nair', amount: '₹400', deadline: 'Oct 28, 2023', status: 'In Progress', description: 'Replace 4 old electrical switchboards in the living room.' },
     ];
 
     return (
