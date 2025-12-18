@@ -35,7 +35,7 @@ const BrowseTasks = () => {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <select className="form-select w-auto" onChange={(e) => setSelectedCategory(e.target.value)}>
+                    <select className="form-select w-auto pe-5" onChange={(e) => setSelectedCategory(e.target.value)}>
                         <option>All Categories</option>
                         <option>Plumbing</option>
                         <option>Electrical</option>
