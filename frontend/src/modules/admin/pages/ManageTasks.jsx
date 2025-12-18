@@ -3,10 +3,10 @@ import Button from '../../../components/Button';
 
 const ManageTasks = () => {
     const tasks = [
-        { id: 101, title: 'Fix Bug in React App', postedBy: 'Alice Johnson', budget: '₹50', status: 'In Progress', date: 'Oct 26, 2023' },
-        { id: 102, title: 'Logo Design for Startup', postedBy: 'Mark Zuckerberg', budget: '₹200', status: 'Open', date: 'Oct 25, 2023' },
-        { id: 103, title: 'Write Blog Post on AI', postedBy: 'Elon Musk', budget: '₹100', status: 'Completed', date: 'Oct 24, 2023' },
-        { id: 104, title: 'Python Script for Scraping', postedBy: 'Jeff Bezos', budget: '₹150', status: 'Flagged', date: 'Oct 23, 2023' },
+        { id: 101, title: 'Fix Leaking Tap', postedBy: 'Rajesh Kumar', budget: '₹200', status: 'In Progress', date: 'Oct 26, 2023' },
+        { id: 102, title: 'Sofa Set Cleaning', postedBy: 'Amit Sharma', budget: '₹500', status: 'Open', date: 'Oct 25, 2023' },
+        { id: 103, title: 'Kitchen Platform Repair', postedBy: 'Neha Gupta', budget: '₹1200', status: 'Completed', date: 'Oct 24, 2023' },
+        { id: 104, title: 'Fan Installation', postedBy: 'Vikram Singh', budget: '₹300', status: 'Flagged', date: 'Oct 23, 2023' },
     ];
 
     const [searchTerm, setSearchTerm] = useState('');

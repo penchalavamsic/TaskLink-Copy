@@ -10,10 +10,10 @@ const Dashboard = () => {
     ];
 
     const recentUsers = [
-        { id: 1, name: 'John Doe', role: 'User', date: 'Oct 26, 2023', status: 'Active' },
-        { id: 2, name: 'Sarah Connor', role: 'Worker', date: 'Oct 26, 2023', status: 'Pending' },
-        { id: 3, name: 'Michael Smith', role: 'User', date: 'Oct 25, 2023', status: 'Active' },
-        { id: 4, name: 'Emily Davis', role: 'Worker', date: 'Oct 24, 2023', status: 'Active' },
+        { id: 1, name: 'Rajesh Kumar', role: 'User', date: 'Oct 26, 2023', status: 'Active' },
+        { id: 2, name: 'Suresh Reddy', role: 'Worker', date: 'Oct 26, 2023', status: 'Pending' },
+        { id: 3, name: 'Amit Sharma', role: 'User', date: 'Oct 25, 2023', status: 'Active' },
+        { id: 4, name: 'Priya Patel', role: 'Worker', date: 'Oct 24, 2023', status: 'Active' },
     ];
 
     return (

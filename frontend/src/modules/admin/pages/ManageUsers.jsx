@@ -5,11 +5,11 @@ import avatar from '../../../assets/avatar_placeholder.png';
 const ManageUsers = () => {
     // Mock Users Data
     const initialUsers = [
-        { id: 1, name: 'Alice Johnson', email: 'alice@example.com', role: 'User', status: 'Active' },
-        { id: 2, name: 'Bob Williams', email: 'bob@worker.com', role: 'Worker', status: 'Active' },
-        { id: 3, name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', status: 'Suspended' },
-        { id: 4, name: 'Diana Prince', email: 'diana@worker.com', role: 'Worker', status: 'Pending' },
-        { id: 5, name: 'Evan Wright', email: 'evan@example.com', role: 'User', status: 'Active' },
+        { id: 1, name: 'Rajesh Kumar', email: 'rajesh@example.com', role: 'User', status: 'Active' },
+        { id: 2, name: 'Suresh Reddy', email: 'suresh@worker.com', role: 'Worker', status: 'Active' },
+        { id: 3, name: 'Amit Sharma', email: 'amit@example.com', role: 'User', status: 'Suspended' },
+        { id: 4, name: 'Priya Patel', email: 'priya@worker.com', role: 'Worker', status: 'Pending' },
+        { id: 5, name: 'Neha Gupta', email: 'neha@example.com', role: 'User', status: 'Active' },
     ];
 
     const [users, setUsers] = useState(initialUsers);

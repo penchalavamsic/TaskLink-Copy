@@ -4,8 +4,8 @@ import avatar from '../../../assets/avatar_placeholder.png';
 
 const WorkerVerification = () => {
     const [pendingWorkers, setPendingWorkers] = useState([
-        { id: 1, name: 'Diana Prince', email: 'diana@worker.com', profession: 'Graphic Designer', submittedDate: 'Oct 26, 2023', documents: ['ID Proof.pdf', 'Certificate.jpg'] },
-        { id: 2, name: 'Bruce Wayne', email: 'bruce@worker.com', profession: 'Security Consultant', submittedDate: 'Oct 25, 2023', documents: ['Passport.pdf'] },
+        { id: 1, name: 'Sunita Rao', email: 'sunita@worker.com', profession: 'Housemaid', submittedDate: 'Oct 26, 2023', documents: ['Aadhar Card.pdf', 'Police Verification.jpg'] },
+        { id: 2, name: 'Ismail Khan', email: 'ismail@worker.com', profession: 'AC Technician', submittedDate: 'Oct 25, 2023', documents: ['Skill Certificate.pdf', 'Voter ID.jpg'] },
     ]);
 
     const handleApprove = (id) => {
