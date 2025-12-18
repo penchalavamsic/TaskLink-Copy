@@ -28,7 +28,7 @@ const PostTask = () => {
                             <form onSubmit={handlePostTask}>
                                 <div className="mb-3">
                                     <label htmlFor="taskTitle" className="form-label fw-semibold">Task Title</label>
-                                    <input type="text" className="form-control" id="taskTitle" placeholder="e.g. Need a logo design" />
+                                    <input type="text" className="form-control" id="taskTitle" placeholder="e.g. Need a Plumber for leak repair" />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="taskDescription" className="form-label fw-semibold">Description</label>
@@ -39,15 +39,17 @@ const PostTask = () => {
                                         <label htmlFor="category" className="form-label fw-semibold">Category</label>
                                         <select className="form-select" id="category">
                                             <option defaultValue>Select Category</option>
-                                            <option value="web">Web Development</option>
-                                            <option value="design">Graphic Design</option>
-                                            <option value="writing">Content Writing</option>
-                                            <option value="marketing">Marketing</option>
+                                            <option value="plumbing">Plumbing</option>
+                                            <option value="electrical">Electrical</option>
+                                            <option value="carpentry">Carpentry</option>
+                                            <option value="painting">Painting</option>
+                                            <option value="cleaning">Cleaning</option>
+                                            <option value="repair">Home Repair</option>
                                         </select>
                                     </div>
                                     <div className="col-md-6">
-                                        <label htmlFor="budget" className="form-label fw-semibold">Budget ($)</label>
-                                        <input type="number" className="form-control" id="budget" placeholder="100" />
+                                        <label htmlFor="budget" className="form-label fw-semibold">Budget (₹)</label>
+                                        <input type="number" className="form-control" id="budget" placeholder="500" />
                                     </div>
                                 </div>
                                 <div className="mb-4">
