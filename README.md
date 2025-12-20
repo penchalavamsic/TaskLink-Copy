@@ -1,4 +1,4 @@
-## 📁 Frontend Folder Structure
+## Frontend Folder Structure
 
 ```bash
 src/
@@ -61,4 +61,78 @@ src/
 ├── App.jsx                           # Root App component
 ├── main.jsx                          # Entry point for React
 └── index.css                         # Base styles
+```
+
+## Backend Folder Structure
+
+```bash
+backend/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/yourapp/
+│   │   │   ├── config/                     # Configuration classes
+│   │   │   │   ├── WebConfig.java          # CORS, static resources
+│   │   │   │   └── SecurityConfig.java     # JWT/Security setup (optional)
+│   │   │   │
+│   │   │   ├── controller/                 # REST controllers (API endpoints)
+│   │   │   │   ├── auth/                   # Authentication (Login, Signup)
+│   │   │   │   │   ├── AuthController.java
+│   │   │   │   │   └── JwtController.java  # (optional)
+│   │   │   │   │
+│   │   │   │   ├── user/                   # User-related endpoints
+│   │   │   │   │   ├── UserController.java
+│   │   │   │   │   ├── TaskController.java
+│   │   │   │   │   └── ReviewController.java
+│   │   │   │   │
+│   │   │   │   ├── worker/                 # Worker-related endpoints
+│   │   │   │   │   ├── WorkerController.java
+│   │   │   │   │   ├── BidController.java
+│   │   │   │   │   └── ProfileController.java
+│   │   │   │   │
+│   │   │   │   └── admin/                  # Admin panel endpoints
+│   │   │   │       ├── AdminController.java
+│   │   │   │       ├── ManageUserController.java
+│   │   │   │       └── ManageTaskController.java
+│   │   │   │
+│   │   │   ├── model/                      # Entity classes (JPA)
+│   │   │   │   ├── User.java
+│   │   │   │   ├── Worker.java
+│   │   │   │   ├── Task.java
+│   │   │   │   ├── Bid.java
+│   │   │   │   └── Review.java
+│   │   │   │
+│   │   │   ├── repository/                 # JPA repositories
+│   │   │   │   ├── UserRepository.java
+│   │   │   │   ├── WorkerRepository.java
+│   │   │   │   ├── TaskRepository.java
+│   │   │   │   ├── BidRepository.java
+│   │   │   │   └── ReviewRepository.java
+│   │   │   │
+│   │   │   ├── service/                    # Business logic layer
+│   │   │   │   ├── UserService.java
+│   │   │   │   ├── WorkerService.java
+│   │   │   │   ├── TaskService.java
+│   │   │   │   ├── BidService.java
+│   │   │   │   └── ReviewService.java
+│   │   │   │
+│   │   │   ├── dto/                        # Data Transfer Objects (API request/response)
+│   │   │   │   ├── AuthRequest.java
+│   │   │   │   ├── AuthResponse.java
+│   │   │   │   └── UserDTO.java
+│   │   │   │
+│   │   │   ├── exception/                  # Centralized error handling
+│   │   │   │   ├── GlobalExceptionHandler.java
+│   │   │   │   └── ResourceNotFoundException.java
+│   │   │   │
+│   │   │   └── YourAppApplication.java     # Main Spring Boot class
+│   │   │
+│   │   └── resources/
+│   │       ├── application.properties      # DB + app configuration
+│   │       └── data.sql                    # (Optional) Seed data
+│   │
+│   └── test/                               # Unit & integration tests
+│
+└── pom.xml                                 # Maven dependencies
+```
 
