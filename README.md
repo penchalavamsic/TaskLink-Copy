@@ -131,7 +131,7 @@ backend/
 │   │       ├── application.properties      # DB + app configuration
 │   │       └── data.sql                    # (Optional) Seed data
 │   │
-│   └── test/                               # Unit & integration tests
+│   └── test/                               # Unit & integration testing
 │
 └── pom.xml                                 # Maven dependencies
 ```
