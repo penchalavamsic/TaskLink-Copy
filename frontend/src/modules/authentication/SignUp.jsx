@@ -103,7 +103,7 @@ const SignUp = () => {
                                                 type="text"
                                                 className="form-control bg-light"
                                                 id="firstName"
-                                                placeholder="Rajesh"
+                                                placeholder="Enter First Name"
                                                 value={formData.firstName}
                                                 onChange={handleChange}
                                                 required
@@ -115,7 +115,7 @@ const SignUp = () => {
                                                 type="text"
                                                 className="form-control bg-light"
                                                 id="lastName"
-                                                placeholder="Kumar"
+                                                placeholder="Enter Last Name"
                                                 value={formData.lastName}
                                                 onChange={handleChange}
                                                 required
@@ -128,7 +128,7 @@ const SignUp = () => {
                                             type="text"
                                             className="form-control bg-light"
                                             id="address"
-                                            placeholder="e.g. Flat 402, Sunshine Apts, Mumbai"
+                                            placeholder="Enter complete Address"
                                             value={formData.address}
                                             onChange={handleChange}
                                             required
@@ -140,7 +140,7 @@ const SignUp = () => {
                                             type="email"
                                             className="form-control bg-light"
                                             id="email"
-                                            placeholder="rajesh@example.com"
+                                            placeholder="Enter Email Address"
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
@@ -152,7 +152,7 @@ const SignUp = () => {
                                             type="password"
                                             className="form-control bg-light"
                                             id="password"
-                                            placeholder="••••••••"
+                                            placeholder="Enter Password"
                                             value={formData.password}
                                             onChange={handleChange}
                                             required
@@ -164,7 +164,7 @@ const SignUp = () => {
                                             type="password"
                                             className="form-control bg-light"
                                             id="confirmPassword"
-                                            placeholder="••••••••"
+                                            placeholder="Enter Confirm Password"
                                             value={formData.confirmPassword}
                                             onChange={handleChange}
                                             required
