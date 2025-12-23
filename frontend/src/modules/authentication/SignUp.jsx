@@ -5,14 +5,55 @@ import Button from '../../components/Button';
 const SignUp = () => {
     const navigate = useNavigate();
     const [role, setRole] = useState('user'); // Default selection
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        address: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
 
-    const handleSignUp = (e) => {
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleSignUp = async (e) => {
         e.preventDefault();
-        // Mock authentication logic
-        if (role === 'user') {
-            navigate('/user/dashboard');
-        } else {
-            navigate('/worker/dashboard');
+
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const payload = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+            address: formData.address,
+            role: role === 'user' ? 'User' : 'Worker' // Map 'user'/'worker' to 'User'/'Worker'
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                alert('Registration successful! Please login.');
+                navigate('/login');
+            } else {
+                const errorData = await response.text();
+                alert('Registration failed: ' + errorData);
+            }
+        } catch (error) {
+            console.error('Error during signup:', error);
+            alert('An error occurred during registration.');
         }
     };
 
@@ -58,28 +99,76 @@ const SignUp = () => {
                                     <div className="row mb-3">
                                         <div className="col-6">
                                             <label htmlFor="firstName" className="form-label fw-semibold">First Name</label>
-                                            <input type="text" className="form-control bg-light" id="firstName" placeholder="Rajesh" required />
+                                            <input
+                                                type="text"
+                                                className="form-control bg-light"
+                                                id="firstName"
+                                                placeholder="Rajesh"
+                                                value={formData.firstName}
+                                                onChange={handleChange}
+                                                required
+                                            />
                                         </div>
                                         <div className="col-6">
                                             <label htmlFor="lastName" className="form-label fw-semibold">Last Name</label>
-                                            <input type="text" className="form-control bg-light" id="lastName" placeholder="Kumar" required />
+                                            <input
+                                                type="text"
+                                                className="form-control bg-light"
+                                                id="lastName"
+                                                placeholder="Kumar"
+                                                value={formData.lastName}
+                                                onChange={handleChange}
+                                                required
+                                            />
                                         </div>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="address" className="form-label fw-semibold">Address</label>
-                                        <input type="text" className="form-control bg-light" id="address" placeholder="e.g. Flat 402, Sunshine Apts, Mumbai" required />
+                                        <input
+                                            type="text"
+                                            className="form-control bg-light"
+                                            id="address"
+                                            placeholder="e.g. Flat 402, Sunshine Apts, Mumbai"
+                                            value={formData.address}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label fw-semibold">Email Address</label>
-                                        <input type="email" className="form-control bg-light" id="email" placeholder="rajesh@example.com" required />
+                                        <input
+                                            type="email"
+                                            className="form-control bg-light"
+                                            id="email"
+                                            placeholder="rajesh@example.com"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label fw-semibold">Password</label>
-                                        <input type="password" className="form-control bg-light" id="password" placeholder="••••••••" required />
+                                        <input
+                                            type="password"
+                                            className="form-control bg-light"
+                                            id="password"
+                                            placeholder="••••••••"
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
                                     <div className="mb-4">
                                         <label htmlFor="confirmPassword" className="form-label fw-semibold">Confirm Password</label>
-                                        <input type="password" className="form-control bg-light" id="confirmPassword" placeholder="••••••••" required />
+                                        <input
+                                            type="password"
+                                            className="form-control bg-light"
+                                            id="confirmPassword"
+                                            placeholder="••••••••"
+                                            value={formData.confirmPassword}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="form-check mb-4">
