@@ -1,15 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import StatCard from '../../../components/StatCard';
-
 import QuickActions from '../../../components/QuickActions';
 
 const Dashboard = () => {
-    // Mock data
+    const [statsData, setStatsData] = useState({
+        totalTasks: 0,
+        inProgress: 0,
+        completed: 0,
+        spent: 0
+    });
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) {
+                    const user = JSON.parse(userStr);
+                    if (user.userId) {
+                        const response = await fetch(`http://localhost:8080/api/user/${user.userId}/dashboard`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            setStatsData({
+                                totalTasks: data.totalTasks || 0,
+                                inProgress: data.inProgress || 0,
+                                completed: data.completed || 0,
+                                spent: data.spent || 0
+                            });
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to fetch dashboard stats", error);
+            }
+        };
+
+        fetchStats();
+    }, []);
+
     const stats = [
-        { title: 'Total Tasks', value: '12', icon: 'bi bi-hdd-stack', color: 'primary' },
-        { title: 'In Progress', value: '4', icon: 'bi bi-hourglass-split', color: 'warning' },
-        { title: 'Completed', value: '8', icon: 'bi bi-check-circle', color: 'success' },
-        { title: 'Spent', value: '₹450', icon: 'bi bi-wallet2', color: 'info' },
+        { title: 'Total Tasks', value: statsData.totalTasks, icon: 'bi bi-hdd-stack', color: 'primary' },
+        { title: 'In Progress', value: statsData.inProgress, icon: 'bi bi-hourglass-split', color: 'warning' },
+        { title: 'Completed', value: statsData.completed, icon: 'bi bi-check-circle', color: 'success' },
+        { title: 'Spent', value: `₹${statsData.spent}`, icon: 'bi bi-wallet2', color: 'info' },
     ];
 
 
