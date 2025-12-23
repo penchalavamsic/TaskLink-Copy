@@ -1,16 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskCard from '../../../components/TaskCard';
 
 const MyTasks = () => {
-    // Mock data
-    const tasks = [
-        { id: 1, title: 'Fix Leaking Kitchen Tap', description: 'Repair the dripping faucet in the main kitchen sink.', status: 'In Progress', budget: '₹450', date: 'Oct 24, 2023' },
-        { id: 2, title: 'Paint 2BHK Apartment', description: 'Whitewash and paint walls for the entire apartment.', status: 'Completed', budget: '₹12000', date: 'Oct 20, 2023' },
-        { id: 3, title: 'Install Ceiling Fan', description: 'Installation of a new high-speed fan in the master bedroom.', status: 'Open', budget: '₹300', date: 'Oct 25, 2023' },
-        { id: 4, title: 'Assemble Wardrobe', description: 'Assembling a 3-door wooden wardrobe from a flat pack.', status: 'Open', budget: '₹850', date: 'Oct 26, 2023' },
-        { id: 5, title: 'Deep Clean 3 Bathrooms', description: 'Deep cleaning and sanitization of three attached bathrooms.', status: 'Completed', budget: '₹1500', date: 'Oct 15, 2023' },
-        { id: 6, title: 'Repair Window Frame', description: 'Fixing the broken hinge and lock on the balcony window.', status: 'In Progress', budget: '₹600', date: 'Oct 23, 2023' },
-    ];
+    const [tasks, setTasks] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const userStr = localStorage.getItem('user');
+            if (!userStr) {
+                setLoading(false);
+                return;
+            }
+            const user = JSON.parse(userStr);
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/tasks/user/${user.userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    // Transform data if necessary to match TaskCard expectation
+                    // TaskCard expects: { id, title, description, status, budget, date }
+                    // Backend returns: { id, title, description, status, budget, deadline, ... }
+                    const formattedTasks = data.map(task => ({
+                        id: task.id,
+                        title: task.title,
+                        description: task.description,
+                        status: task.status, // Assuming backend enum string like 'OPEN', 'IN_PROGRESS' matches or needs CSS adjustment
+                        budget: `₹${task.budget}`,
+                        date: new Date(task.deadline).toLocaleDateString()
+                    }));
+                    setTasks(formattedTasks);
+                }
+            } catch (error) {
+                console.error("Error fetching tasks:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTasks();
+    }, []);
 
     return (
         <div className="container-fluid p-0">
@@ -30,11 +59,21 @@ const MyTasks = () => {
             </div>
 
             <div className="row g-4">
-                {tasks.map(task => (
-                    <div className="col-md-6 col-lg-4 col-xl-4" key={task.id}>
-                        <TaskCard task={task} />
+                {loading ? (
+                    <div className="col-12 text-center">Loading tasks...</div>
+                ) : tasks.length > 0 ? (
+                    tasks.map(task => (
+                        <div className="col-md-6 col-lg-4 col-xl-4" key={task.id}>
+                            <TaskCard task={task} />
+                        </div>
+                    ))
+                ) : (
+                    <div className="col-12 text-center py-5">
+                        <i className="bi bi-clipboard-x display-1 text-muted mb-3 d-block"></i>
+                        <h4 className="text-muted">No Tasks Added</h4>
+                        <p className="text-muted">Post a task to get started!</p>
                     </div>
-                ))}
+                )}
             </div>
         </div>
     );

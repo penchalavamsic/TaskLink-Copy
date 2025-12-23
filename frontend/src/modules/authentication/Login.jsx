@@ -23,6 +23,10 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
+                // Store user data in localStorage
+                localStorage.setItem('user', JSON.stringify(data));
+
+                // Determine redirect path based on role received from backend
                 // Determine redirect path based on role received from backend
                 const userRole = data.role;
                 if (userRole === 'User') {
