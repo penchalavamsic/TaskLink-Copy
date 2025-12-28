@@ -66,73 +66,87 @@ src/
 ## Backend Folder Structure
 
 ```bash
-backend/
+backend/                                # Backend project root
+├── mvnw                                # Maven wrapper (run Maven without installing)
+├── mvnw.cmd                            # Maven wrapper for Windows
+├── pom.xml                             # Maven dependencies + project build config
+├── HELP.md                             # Auto-generated help file
 │
-├── src/
-│   ├── main/
-│   │   ├── java/com/yourapp/
-│   │   │   ├── config/                     # Configuration classes
-│   │   │   │   ├── WebConfig.java          # CORS, static resources
-│   │   │   │   └── SecurityConfig.java     # JWT/Security setup (optional)
-│   │   │   │
-│   │   │   ├── controller/                 # REST controllers (API endpoints)
-│   │   │   │   ├── auth/                   # Authentication (Login, Signup)
-│   │   │   │   │   ├── AuthController.java
-│   │   │   │   │   └── JwtController.java  # (optional)
-│   │   │   │   │
-│   │   │   │   ├── user/                   # User-related endpoints
-│   │   │   │   │   ├── UserController.java
-│   │   │   │   │   ├── TaskController.java
-│   │   │   │   │   └── ReviewController.java
-│   │   │   │   │
-│   │   │   │   ├── worker/                 # Worker-related endpoints
-│   │   │   │   │   ├── WorkerController.java
-│   │   │   │   │   ├── BidController.java
-│   │   │   │   │   └── ProfileController.java
-│   │   │   │   │
-│   │   │   │   └── admin/                  # Admin panel endpoints
-│   │   │   │       ├── AdminController.java
-│   │   │   │       ├── ManageUserController.java
-│   │   │   │       └── ManageTaskController.java
-│   │   │   │
-│   │   │   ├── model/                      # Entity classes (JPA)
-│   │   │   │   ├── User.java
-│   │   │   │   ├── Worker.java
-│   │   │   │   ├── Task.java
-│   │   │   │   ├── Bid.java
-│   │   │   │   └── Review.java
-│   │   │   │
-│   │   │   ├── repository/                 # JPA repositories
-│   │   │   │   ├── UserRepository.java
-│   │   │   │   ├── WorkerRepository.java
-│   │   │   │   ├── TaskRepository.java
-│   │   │   │   ├── BidRepository.java
-│   │   │   │   └── ReviewRepository.java
-│   │   │   │
-│   │   │   ├── service/                    # Business logic layer
-│   │   │   │   ├── UserService.java
-│   │   │   │   ├── WorkerService.java
-│   │   │   │   ├── TaskService.java
-│   │   │   │   ├── BidService.java
-│   │   │   │   └── ReviewService.java
-│   │   │   │
-│   │   │   ├── dto/                        # Data Transfer Objects (API request/response)
-│   │   │   │   ├── AuthRequest.java
-│   │   │   │   ├── AuthResponse.java
-│   │   │   │   └── UserDTO.java
-│   │   │   │
-│   │   │   ├── exception/                  # Centralized error handling
-│   │   │   │   ├── GlobalExceptionHandler.java
-│   │   │   │   └── ResourceNotFoundException.java
-│   │   │   │
-│   │   │   └── YourAppApplication.java     # Main Spring Boot class
+├── src/                                # All source code (main + tests)
+│   ├── main/                           # Main application code (runs in production)
+│   │   ├── java/                       # Java source files
+│   │   │   └── com/
+│   │   │       └── tasklink/
+│   │   │           └── backend/
+│   │   │               ├── config/     # Application configuration (CORS, Security)
+│   │   │               │   ├── WebConfig.java
+│   │   │               │   └── SecurityConfig.java
+│   │   │               │
+│   │   │               ├── controller/ # API endpoints (request handling)
+│   │   │               │   ├── auth/   # Login, signup, JWT auth
+│   │   │               │   │   ├── AuthController.java
+│   │   │               │   │   └── JwtController.java
+│   │   │               │   │
+│   │   │               │   ├── user/   # Controllers for users
+│   │   │               │   │   ├── UserController.java
+│   │   │               │   │   ├── TaskController.java
+│   │   │               │   │   └── ReviewController.java
+│   │   │               │   │
+│   │   │               │   ├── worker/ # Controllers for workers & bidding
+│   │   │               │   │   ├── WorkerController.java
+│   │   │               │   │   ├── BidController.java
+│   │   │               │   │   └── ProfileController.java
+│   │   │               │   │
+│   │   │               │   └── admin/  # Admin panel APIs
+│   │   │               │       ├── AdminController.java
+│   │   │               │       ├── ManageUserController.java
+│   │   │               │       └── ManageTaskController.java
+│   │   │               │
+│   │   │               ├── model/      # Entity models (database tables as classes)
+│   │   │               │   ├── User.java
+│   │   │               │   ├── Worker.java
+│   │   │               │   ├── Task.java
+│   │   │               │   ├── Bid.java
+│   │   │               │   └── Review.java
+│   │   │               │
+│   │   │               ├── repository/ # Database access layer (JPA interface)
+│   │   │               │   ├── UserRepository.java
+│   │   │               │   ├── WorkerRepository.java
+│   │   │               │   ├── TaskRepository.java
+│   │   │               │   ├── BidRepository.java
+│   │   │               │   └── ReviewRepository.java
+│   │   │               │
+│   │   │               ├── service/    # Business logic (between controller & repo)
+│   │   │               │   ├── UserService.java
+│   │   │               │   ├── WorkerService.java
+│   │   │               │   ├── TaskService.java
+│   │   │               │   ├── BidService.java
+│   │   │               │   └── ReviewService.java
+│   │   │               │
+│   │   │               ├── dto/        # Request/response objects sent through API
+│   │   │               │   ├── AuthRequest.java
+│   │   │               │   ├── AuthResponse.java
+│   │   │               │   └── UserDTO.java
+│   │   │               │
+│   │   │               ├── exception/  # Custom exceptions + centralized error handling
+│   │   │               │   ├── GlobalExceptionHandler.java
+│   │   │               │   └── ResourceNotFoundException.java
+│   │   │               │
+│   │   │               └── TaskLinkBackendApplication.java  # Main Spring Boot starter
 │   │   │
-│   │   └── resources/
-│   │       ├── application.properties      # DB + app configuration
-│   │       └── data.sql                    # (Optional) Seed data
+│   │   └── resources/                  # Configuration & resource files
+│   │       ├── application.properties  # Database + Spring Boot settings
+│   │       ├── static/                 # Static assets (images/js/css) if needed
+│   │       └── templates/              # HTML templates (if using Thymeleaf)
 │   │
-│   └── test/                               # Unit & integration testing
+│   └── test/                           # Automated tests
+│       └── java/
+│           └── com/
+│               └── tasklink/
+│                   └── backend/
+│                       └── TaskLinkBackendApplicationTests.java
 │
-└── pom.xml                                 # Maven dependencies
+└── target/                             # Build output (generated on compile)
+
 ```
 
