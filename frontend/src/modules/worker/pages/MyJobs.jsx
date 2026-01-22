@@ -2,11 +2,37 @@ import React from 'react';
 import Button from '../../../components/Button';
 
 const MyJobs = () => {
-    const jobs = [
-        { id: 1, title: 'Bathroom Tile Installation', client: 'Rohan Das', amount: '₹2500', deadline: 'Oct 30, 2023', status: 'In Progress', description: 'Install anti-skid tiles in two bathrooms. Materials provided.' },
-        { id: 2, title: 'Garden Cleaning', client: 'Meera Iyer', amount: '₹800', deadline: 'Oct 22, 2023', status: 'Completed', description: 'Clear weeds and trim hedges for the front and backyard garden.' },
-        { id: 3, title: 'Switchboard Replacement', client: 'Arjun Nair', amount: '₹400', deadline: 'Oct 28, 2023', status: 'In Progress', description: 'Replace 4 old electrical switchboards in the living room.' },
-    ];
+    const [jobs, setJobs] = React.useState([]);
+
+    React.useEffect(() => {
+        const fetchJobs = async () => {
+            const userStr = sessionStorage.getItem('user');
+            if (!userStr) return;
+            const user = JSON.parse(userStr);
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/tasks/worker/${user.userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+
+                    const formattedJobs = data.map(job => ({
+                        id: job.id,
+                        title: job.title,
+                        client: job.clientName || 'Unknown Client',
+                        amount: `₹${job.budget}`,
+                        deadline: job.deadline ? new Date(job.deadline).toLocaleDateString() : 'No Deadline',
+                        status: job.status === 'IN_PROGRESS' ? 'In Progress' : job.status,
+                        description: job.description
+                    }));
+                    setJobs(formattedJobs);
+                }
+            } catch (error) {
+                console.error("Error fetching jobs:", error);
+            }
+        };
+
+        fetchJobs();
+    }, []);
 
     return (
         <div className="container-fluid p-0">

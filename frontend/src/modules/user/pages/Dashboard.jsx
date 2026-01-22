@@ -13,7 +13,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const userStr = localStorage.getItem('user');
+                const userStr = sessionStorage.getItem('user');
                 if (userStr) {
                     const user = JSON.parse(userStr);
                     if (user.userId) {

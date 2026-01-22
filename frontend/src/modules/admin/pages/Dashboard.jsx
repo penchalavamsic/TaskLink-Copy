@@ -1,20 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import StatCard from '../../../components/StatCard';
 
 const Dashboard = () => {
-    // Mock data for Admin Stats
-    const stats = [
-        { title: 'Total Users', value: '1,250', icon: 'bi bi-people', color: 'primary' },
-        { title: 'Total Workers', value: '850', icon: 'bi bi-person-badge', color: 'success' },
-        { title: 'Active Tasks', value: '320', icon: 'bi bi-list-task', color: 'info' },
-    ];
+    // State for dynamic data
+    const [stats, setStats] = useState([
+        { title: 'Total Users', value: '0', icon: 'bi bi-people', color: 'primary' },
+        { title: 'Total Workers', value: '0', icon: 'bi bi-person-badge', color: 'success' },
+        { title: 'Active Tasks', value: '0', icon: 'bi bi-list-task', color: 'info' },
+    ]);
+    const [recentUsers, setRecentUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const recentUsers = [
-        { id: 1, name: 'Rajesh Kumar', role: 'User', date: 'Oct 26, 2023', status: 'Active' },
-        { id: 2, name: 'Suresh Reddy', role: 'Worker', date: 'Oct 26, 2023', status: 'Pending' },
-        { id: 3, name: 'Amit Sharma', role: 'User', date: 'Oct 25, 2023', status: 'Active' },
-        { id: 4, name: 'Priya Patel', role: 'Worker', date: 'Oct 24, 2023', status: 'Active' },
-    ];
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            try {
+                console.log("Fetching dashboard stats...");
+                const response = await fetch('http://localhost:8080/api/admin/dashboard-stats');
+                console.log("Response status:", response.status);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Dashboard data:", data);
+                    setStats([
+                        { title: 'Total Users', value: data.totalUsers !== undefined ? data.totalUsers.toString() : '0', icon: 'bi bi-people', color: 'primary' },
+                        { title: 'Total Workers', value: data.totalWorkers !== undefined ? data.totalWorkers.toString() : '0', icon: 'bi bi-person-badge', color: 'success' },
+                        { title: 'Active Tasks', value: data.activeTasks !== undefined ? data.activeTasks.toString() : '0', icon: 'bi bi-list-task', color: 'info' },
+                    ]);
+                } else {
+                    console.error("Failed to fetch dashboard stats");
+                }
+
+                // Fetch Recent Registrations
+                console.log("Fetching recent registrations...");
+                const userResponse = await fetch('http://localhost:8080/api/admin/recent-registrations');
+                if (userResponse.ok) {
+                    const users = await userResponse.json();
+                    console.log("Recent users:", users);
+                    setRecentUsers(users.map(u => ({
+                        id: u.id,
+                        name: u.firstName + ' ' + u.lastName,
+                        role: u.role === 'CLIENT' ? 'User' : (u.role === 'WORKER' ? 'Worker' : 'Admin'),
+                        date: u.joinedAt ? new Date(u.joinedAt).toLocaleDateString() : 'N/A',
+                        status: 'Active' // Defaulting to Active as we don't have status in User model yet
+                    })));
+                } else {
+                    console.error("Failed to fetch recent registrations");
+                }
+
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching dashboard data:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchDashboardData();
+    }, []);
 
     return (
         <div className="container-fluid p-0">
@@ -48,18 +89,26 @@ const Dashboard = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {recentUsers.map(user => (
-                                            <tr key={user.id}>
-                                                <td className="fw-semibold">{user.name}</td>
-                                                <td>{user.role}</td>
-                                                <td>{user.date}</td>
-                                                <td>
-                                                    <span className={`badge ${user.status === 'Active' ? 'bg-success' : 'bg-warning text-dark'}`}>
-                                                        {user.status}
-                                                    </span>
+                                        {recentUsers.length > 0 ? (
+                                            recentUsers.map(user => (
+                                                <tr key={user.id}>
+                                                    <td className="fw-semibold">{user.name}</td>
+                                                    <td>{user.role}</td>
+                                                    <td>{user.date}</td>
+                                                    <td>
+                                                        <span className={`badge ${user.status === 'Active' ? 'bg-success' : 'bg-warning text-dark'}`}>
+                                                            {user.status}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        ) : (
+                                            <tr>
+                                                <td colSpan="4" className="text-center py-4 text-muted">
+                                                    No recent registrations found
                                                 </td>
                                             </tr>
-                                        ))}
+                                        )}
                                     </tbody>
                                 </table>
                             </div>

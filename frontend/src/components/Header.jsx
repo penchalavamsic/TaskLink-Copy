@@ -6,7 +6,31 @@ const Header = ({ role = 'user' }) => {
     const isUser = role === 'user';
     const profileLink = isUser ? '/user/profile' : `/${role}/profile`;
     const notificationLink = isUser ? '/user/notifications' : `/${role}/notifications`;
-    const DisplayName = role === 'admin' ? 'Admin' : 'User Name';
+    const [displayName, setDisplayName] = React.useState('User Name');
+
+    React.useEffect(() => {
+        const updateName = () => {
+            if (role === 'admin') {
+                setDisplayName('Admin');
+            } else {
+                const userStr = sessionStorage.getItem('user');
+                if (userStr) {
+                    try {
+                        const user = JSON.parse(userStr);
+                        if (user.firstName || user.lastName) {
+                            setDisplayName(`${user.firstName || ''} ${user.lastName || ''}`.trim());
+                        }
+                    } catch (e) {
+                        console.error("Error parsing user data in Header", e);
+                    }
+                }
+            }
+        };
+
+        updateName();
+        window.addEventListener('user-info-updated', updateName);
+        return () => window.removeEventListener('user-info-updated', updateName);
+    }, [role]);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom px-4">
@@ -24,7 +48,7 @@ const Header = ({ role = 'user' }) => {
                         <li className="nav-item dropdown ms-3">
                             <a className="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src={avatar} alt="Profile" className="rounded-circle me-2" style={{ width: '40px', height: '40px' }} />
-                                <span className="fw-bold">{DisplayName}</span>
+                                <span className="fw-bold">{displayName}</span>
                             </a>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><Link className="dropdown-item" to={profileLink}>Profile</Link></li>

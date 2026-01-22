@@ -1,16 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../../../components/Button';
 
 const ManageTasks = () => {
-    const tasks = [
-        { id: 101, title: 'Fix Leaking Tap', postedBy: 'Rajesh Kumar', budget: '₹200', status: 'In Progress', date: 'Oct 26, 2023' },
-        { id: 102, title: 'Sofa Set Cleaning', postedBy: 'Amit Sharma', budget: '₹500', status: 'Open', date: 'Oct 25, 2023' },
-        { id: 103, title: 'Kitchen Platform Repair', postedBy: 'Neha Gupta', budget: '₹1200', status: 'Completed', date: 'Oct 24, 2023' },
-        { id: 104, title: 'Fan Installation', postedBy: 'Vikram Singh', budget: '₹300', status: 'Flagged', date: 'Oct 23, 2023' },
-    ];
-
+    const [tasks, setTasks] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterStatus, setFilterStatus] = useState('All');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/tasks');
+                if (response.ok) {
+                    const data = await response.json();
+                    setTasks(data.map(t => ({
+                        id: t.id,
+                        title: t.title,
+                        postedBy: t.clientName || 'Unknown',
+                        budget: `₹${t.budget}`,
+                        status: t.status,
+                        date: new Date(t.deadline).toLocaleDateString()
+                    })));
+                }
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching tasks:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchTasks();
+    }, []);
+
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to delete this task?')) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/admin/tasks/${id}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    setTasks(tasks.filter(t => t.id !== id));
+                    alert("Task deleted successfully");
+                } else {
+                    alert("Failed to delete task");
+                }
+            } catch (error) {
+                console.error("Error deleting task:", error);
+                alert("Error deleting task");
+            }
+        }
+    };
 
     const filteredTasks = tasks.filter(task => {
         const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -56,27 +95,49 @@ const ManageTasks = () => {
                                     <th>Budget</th>
                                     <th>Status</th>
                                     <th>Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredTasks.map(task => (
-                                    <tr key={task.id}>
-                                        <td className="ps-4 text-muted">#{task.id}</td>
-                                        <td className="fw-semibold">{task.title}</td>
-                                        <td>{task.postedBy}</td>
-                                        <td className="text-success fw-bold">{task.budget}</td>
-                                        <td>
-                                            <span className={`badge rounded-pill ${task.status === 'Open' ? 'bg-success' :
-                                                task.status === 'In Progress' ? 'bg-primary' :
-                                                    task.status === 'Completed' ? 'bg-success' :
-                                                        'bg-danger'
-                                                }`}>
-                                                {task.status}
-                                            </span>
-                                        </td>
-                                        <td>{task.date}</td>
+                                {loading ? (
+                                    <tr>
+                                        <td colSpan="7" className="text-center py-4">Loading tasks...</td>
                                     </tr>
-                                ))}
+                                ) : filteredTasks.length > 0 ? (
+                                    filteredTasks.map(task => (
+                                        <tr key={task.id}>
+                                            <td className="ps-4 text-muted">#{task.id}</td>
+                                            <td className="fw-semibold">{task.title}</td>
+                                            <td>{task.postedBy}</td>
+                                            <td className="text-success fw-bold">{task.budget}</td>
+                                            <td>
+                                                <span className={`badge rounded-pill ${task.status === 'Open' ? 'bg-success' :
+                                                    task.status === 'In Progress' ? 'bg-primary' :
+                                                        task.status === 'Completed' ? 'bg-success' : 'bg-danger'
+                                                    }`}>
+                                                    {task.status}
+                                                </span>
+                                            </td>
+                                            <td>{task.date}</td>
+                                            <td>
+                                                <Button
+                                                    variant="outline-danger"
+                                                    className="btn-sm"
+                                                    onClick={() => handleDelete(task.id)}
+                                                    title="Delete Task"
+                                                >
+                                                    <i className="bi bi-trash"></i>
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="7" className="text-center py-5 text-muted">
+                                            No tasks found
+                                        </td>
+                                    </tr>
+                                )}
                             </tbody>
                         </table>
                     </div>

@@ -8,7 +8,7 @@ const AdminLayout = () => {
         { to: '/admin/dashboard', icon: 'bi-speedometer2', label: 'Dashboard' },
         { to: '/admin/manage-users', icon: 'bi-people-fill', label: 'User Management' },
         { to: '/admin/manage-tasks', icon: 'bi-list-check', label: 'Task Management' },
-        { to: '/admin/worker-verification', icon: 'bi-shield-check', label: 'Worker Verification' },
+        // { to: '/admin/worker-verification', icon: 'bi-shield-check', label: 'Worker Verification' },
     ];
 
     return (

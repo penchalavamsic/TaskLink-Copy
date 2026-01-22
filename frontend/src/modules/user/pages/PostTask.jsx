@@ -11,7 +11,7 @@ const PostTask = () => {
         const formData = new FormData(form);
         const taskData = Object.fromEntries(formData.entries());
 
-        const userStr = localStorage.getItem('user');
+        const userStr = sessionStorage.getItem('user');
         if (!userStr) {
             alert("You must be logged in to post a task.");
             return;

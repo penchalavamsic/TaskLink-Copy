@@ -3,6 +3,7 @@ import Button from '../../../components/Button';
 import avatar from '../../../assets/avatar_placeholder.png';
 
 const WorkerVerification = () => {
+    /*
     const [pendingWorkers, setPendingWorkers] = useState([
         { id: 1, name: 'Sunita Rao', email: 'sunita@worker.com', profession: 'Housemaid', submittedDate: 'Oct 26, 2023', documents: ['Aadhar Card.pdf', 'Police Verification.jpg'] },
         { id: 2, name: 'Ismail Khan', email: 'ismail@worker.com', profession: 'AC Technician', submittedDate: 'Oct 25, 2023', documents: ['Skill Certificate.pdf', 'Voter ID.jpg'] },
@@ -17,11 +18,21 @@ const WorkerVerification = () => {
         setPendingWorkers(pendingWorkers.filter(w => w.id !== id));
         // api call logic would go here
     };
+    */
 
     return (
         <div className="container-fluid p-0">
             <h2 className="mb-4 fw-bold">Worker Verification</h2>
 
+            <div className="card shadow-sm border-0">
+                <div className="card-body text-center py-5">
+                    <i className="bi bi-cone-striped display-1 text-muted mb-3"></i>
+                    <h4 className="text-muted">Functionality to be updated later</h4>
+                    <p className="text-secondary">We are currently working on this module.</p>
+                </div>
+            </div>
+
+            {/* Original UI commented out
             <div className="row g-4">
                 {pendingWorkers.map(worker => (
                     <div className="col-lg-6" key={worker.id}>
@@ -56,6 +67,7 @@ const WorkerVerification = () => {
                     </div>
                 )}
             </div>
+            */}
         </div>
     );
 };

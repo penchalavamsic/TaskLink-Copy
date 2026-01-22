@@ -23,8 +23,14 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
-                // Store user data in localStorage
-                localStorage.setItem('user', JSON.stringify(data));
+                // Clear any existing session data first
+                sessionStorage.removeItem('user');
+
+                // Store user data in sessionStorage
+                sessionStorage.setItem('user', JSON.stringify(data));
+
+                // Force header update
+                window.dispatchEvent(new Event('user-info-updated'));
 
                 const userRole = data.role; // Backend role: "User", "Worker", "Admin"
 

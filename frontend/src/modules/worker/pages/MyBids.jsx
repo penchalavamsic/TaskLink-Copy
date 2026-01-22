@@ -19,7 +19,10 @@ const MyBids = () => {
     return (
         <div className="container-fluid p-0">
             <h2 className="mb-4 fw-bold">My Bids</h2>
-
+            <div className="alert alert-info">
+                My Bids functionality will be updated in the future.
+            </div>
+            {/* 
             <div className="card border-0 shadow-sm">
                 <div className="card-body p-0">
                     <div className="table-responsive">
@@ -65,6 +68,7 @@ const MyBids = () => {
                     </div>
                 </div>
             </div>
+            */}
         </div>
     );
 };

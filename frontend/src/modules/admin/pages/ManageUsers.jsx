@@ -1,25 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../../../components/Button';
 import avatar from '../../../assets/avatar_placeholder.png';
 
 const ManageUsers = () => {
-    // Mock Users Data
-    const initialUsers = [
-        { id: 1, name: 'Rajesh Kumar', email: 'rajesh@example.com', role: 'User', status: 'Active' },
-        { id: 2, name: 'Suresh Reddy', email: 'suresh@worker.com', role: 'Worker', status: 'Active' },
-        { id: 3, name: 'Amit Sharma', email: 'amit@example.com', role: 'User', status: 'Suspended' },
-        { id: 4, name: 'Priya Patel', email: 'priya@worker.com', role: 'Worker', status: 'Pending' },
-        { id: 5, name: 'Neha Gupta', email: 'neha@example.com', role: 'User', status: 'Active' },
-    ];
-
-    const [users, setUsers] = useState(initialUsers);
+    // State for dynamic data
+    const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterRole, setFilterRole] = useState('All');
     const [filterStatus, setFilterStatus] = useState('All');
+    const [loading, setLoading] = useState(true);
 
-    const handleDelete = (id) => {
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/users');
+                if (response.ok) {
+                    const data = await response.json();
+                    setUsers(data.map(u => ({
+                        id: u.id,
+                        name: u.firstName + ' ' + u.lastName,
+                        email: u.email,
+                        role: u.role === 'CLIENT' ? 'User' : (u.role === 'WORKER' ? 'Worker' : 'Admin'),
+                        status: 'Active' // Placeholder status
+                    })));
+                }
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
-            setUsers(users.filter(user => user.id !== id));
+            try {
+                const response = await fetch(`http://localhost:8080/api/admin/users/${id}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    setUsers(users.filter(user => user.id !== id));
+                    alert("User deleted successfully");
+                } else {
+                    alert("Failed to delete user");
+                }
+            } catch (error) {
+                console.error("Error deleting user:", error);
+                alert("Error deleting user");
+            }
         }
     };
 
@@ -72,34 +102,45 @@ const ManageUsers = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.filter(user => {
-                                    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                        user.email.toLowerCase().includes(searchTerm.toLowerCase());
-                                    const matchesRole = filterRole === 'All' || user.role === filterRole;
-                                    const matchesStatus = filterStatus === 'All' || user.status === filterStatus;
-                                    return matchesSearch && matchesRole && matchesStatus;
-                                }).map(user => (
-                                    <tr key={user.id}>
-                                        <td className="ps-4">
-                                            <div className="d-flex align-items-center">
-                                                <img src={avatar} alt="" className="rounded-circle me-3" style={{ width: '40px', height: '40px' }} />
-                                                <div>
-                                                    <div className="fw-bold">{user.name}</div>
-                                                    <div className="text-muted small">{user.email}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {user.role}
-                                        </td>
-                                        <td>
-                                            <span className={`badge ${user.status === 'Active' ? 'bg-primary' : user.status === 'Suspended' ? 'bg-danger' : 'bg-warning text-dark'}`}>
-                                                {user.status}
-                                            </span>
-                                        </td>
-
+                                {loading ? (
+                                    <tr>
+                                        <td colSpan="3" className="text-center py-4">Loading users...</td>
                                     </tr>
-                                ))}
+                                ) : users.length > 0 ? (
+                                    users.filter(user => {
+                                        const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                            user.email.toLowerCase().includes(searchTerm.toLowerCase());
+                                        const matchesRole = filterRole === 'All' || user.role === filterRole;
+                                        const matchesStatus = filterStatus === 'All' || user.status === filterStatus;
+                                        return matchesSearch && matchesRole && matchesStatus;
+                                    }).map(user => (
+                                        <tr key={user.id}>
+                                            <td className="ps-4">
+                                                <div className="d-flex align-items-center">
+                                                    <img src={avatar} alt="" className="rounded-circle me-3" style={{ width: '40px', height: '40px' }} />
+                                                    <div>
+                                                        <div className="fw-bold">{user.name}</div>
+                                                        <div className="text-muted small">{user.email}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {user.role}
+                                            </td>
+                                            <td>
+                                                <span className={`badge ${user.status === 'Active' ? 'bg-primary' : user.status === 'Suspended' ? 'bg-danger' : 'bg-warning text-dark'}`}>
+                                                    {user.status}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="3" className="text-center py-5 text-muted">
+                                            No users found
+                                        </td>
+                                    </tr>
+                                )}
                             </tbody>
                         </table>
                     </div>
